@@ -132,3 +132,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+# Data
+*.nc
+
+# Output
+*.png
+*.pdf
+*.ps
