@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
 # In[2]:
@@ -55,7 +55,7 @@ def grad2meter(grad):
     return meter
 
 
-# In[187]:
+# In[3]:
 
 
 totaltime=time.time()
@@ -138,16 +138,16 @@ for fn in namelist[:]:
                 znew=np.zeros((np.asarray(inz).shape[0],z.shape[1]))
                 znew[:z.shape[0],:]=z
                 znew[z.shape[0]:,:]=z[-1,:]
-
-                zrelnew=np.zeros(np.asarray(inzrel).shape)
+                
+                zrelnew=np.zeros((np.asarray(inzrel).shape[0],zrel.shape[1]))
                 zrelnew[:zrel.shape[0],:]=zrel
                 zrelnew[zrel.shape[0]:,:]=zrel[-1,:]
 
-                rlatnew=np.zeros(np.asarray(inlat).shape)
+                rlatnew=np.zeros((np.asarray(inlat).shape[0],rlat.shape[1]))
                 rlatnew[:z.shape[0],:]=rlat
                 rlatnew[z.shape[0]:,:]=rlat[-1,:]
 
-                rlonnew=np.zeros(np.asarray(inlon).shape)
+                rlonnew=np.zeros((np.asarray(inlon).shape[0],rlon.shape[1]))
                 rlonnew[:rlon.shape[0],:]=rlon
                 rlonnew[rlon.shape[0]:,:]=rlon[-1,:]
 
@@ -195,7 +195,7 @@ print('│  done '+str(int(time.time()-stime))+'s')
 print('│')
 
 
-# In[229]:
+# In[18]:
 
 
 print('├──find start and end points')
@@ -216,7 +216,7 @@ bintop = [0.28,0.30,0.35,0.4,0.45,0.5,0.58,0.65,0.7,0.8,1.,1.3,1.6,2.0,2.5,3.,3.
 bintopscale=[bintop[i]*1.e-6 for i in range(len(bintop))]
 bins = [[] for i in range(len(bintop))]
 # start with second traj
-for id in range(1,dimz[1],10):
+for id in range(1,dimz[1]):
     idc+=1
     traid.append(id)
  
@@ -291,11 +291,12 @@ for id in range(1,dimz[1],10):
 print('│  └─done '+str(int(time.time()-stime))+'s')
 print('│')
 
-#print(bins)
-#print(traid)
+
+print(len(traid))
 
 
-# In[230]:
+
+# In[ ]:
 
 
 zrelmax=2500#np.max(zrel)
@@ -335,7 +336,7 @@ else:
     spcnglat=5.
 
 
-# In[234]:
+# In[ ]:
 
 
 print('├──create figure')
@@ -433,6 +434,7 @@ for bin in bins:
                 if est > 120:
                     est/=60
                     tunit=' min'
+                #print('     └─'+'{:6.2f}'.format(prog)+'%, estimation: '+'{:6.2f}'.format(est)+tunit+'\r')
                 sys.stdout.write('\r'+'     └─'+'{:6.2f}'.format(prog)+'%, estimation: '+'{:6.2f}'.format(est)+tunit)
                 sys.stdout.flush()
                 #stime=time.time()
@@ -453,7 +455,7 @@ for bin in bins:
             xr,yr=m[0](lon_r,lat_r)
             m[0].plot(xr,yr,color=color,linewidth=.25)
             if trajz[-1] < 50.:
-                m[1].scatter(xr[-1],yr[-1],color=color,marker='.',s=5)#linewidth=.001)
+                m[1].scatter(xr[-1],yr[-1],color=color,marker='.',s=2)
             # if len(trajx) == len(trajz):
             # ax2.plot(lon_r,trajz,color=color,linewidth=.25)
 #            ax2.plot(np.arange(len(trajz)),trajz,color=color,linewidth=.25)
@@ -473,7 +475,7 @@ cb1.set_label('Particle size [$\mu m$]',size='x-large')
 import datetime
 
 fname=datetime.datetime.now().strftime("%Y%m%d%H%M")+'.png'
-plt.tight_layout()
+#plt.tight_layout()
 plt.savefig(fname,dpi=500)
 
 
@@ -483,22 +485,10 @@ print('│  done '+str(int(time.time()-sbtime))+'s')
 print('│')
 
 
-# In[232]:
+# In[ ]:
 
 
 
 import datetime
 print(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

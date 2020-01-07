@@ -141,3 +141,6 @@ venv.bak/
 *.png
 *.pdf
 *.ps
+
+# Nohup
+nohup.out
