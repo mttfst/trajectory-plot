@@ -433,7 +433,8 @@ for bin in bins:
                 if est > 120:
                     est/=60
                     tunit=' min'
-                print('     └─'+'{:6.2f}'.format(prog)+'%, estimation: '+'{:6.2f}'.format(est)+tunit,end='\r')
+                sys.stdout.write('\r'+'     └─'+'{:6.2f}'.format(prog)+'%, estimation: '+'{:6.2f}'.format(est)+tunit)
+                sys.stdout.flush()
                 #stime=time.time()
 
 
