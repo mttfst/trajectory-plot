@@ -142,3 +142,5 @@ venv.bak/
 *.png
 *.pdf
 *.ps
+
+!example.png
